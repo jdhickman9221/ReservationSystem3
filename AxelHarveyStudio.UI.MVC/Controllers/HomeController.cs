@@ -26,5 +26,22 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Team()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult FAQ()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
     }
 }
