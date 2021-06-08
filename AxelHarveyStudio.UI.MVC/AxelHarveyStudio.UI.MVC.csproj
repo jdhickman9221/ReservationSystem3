@@ -320,6 +320,12 @@
     <Content Include="Scripts\OldScripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\OldScripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AxelHarveyStudio.DATA.EF\AxelHarveyStudio.DATA.EF.csproj">
+      <Project>{bd283811-11dc-456d-acfe-97e9534622ba}</Project>
+      <Name>AxelHarveyStudio.DATA.EF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
