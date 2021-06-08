@@ -42,7 +42,7 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
             public string ZipCode { get; set; }
 
             [Required(ErrorMessage = "*Required")]
-            [Display(Name = "Reservation Limit")]
+            [Display(Name = "Day Slots")]
             public byte ReservationLimit { get; set; }
         }
 
@@ -54,14 +54,33 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
         public partial class OwnerAsset { }
         public class OwnerAssetMetadata
         {
+            [Required(ErrorMessage = "*Required")]
             public int OwnerAssetID { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            [StringLength(50, ErrorMessage = "* Must be 50 characters or less.")]
             public string AssetName { get; set; }
+
+            [Required(ErrorMessage = "*Required")]          
             public string UserID { get; set; }
-            public string AssetPhoto { get; set; }
-            public string OwnerNotes { get; set; }
-            public string EmployeeNotes { get; set; }
+
+            [StringLength(100, ErrorMessage = "* File Name Must be 100 characters or less.")]
+            public string AssetPhoto { get; set; }//nullable
+
+            [StringLength(500, ErrorMessage = "* Must be 500 characters or less.")]
+            public string OwnerNotes { get; set; }//nullable
+
+            [StringLength(1000, ErrorMessage = "* Must be 1000 characters or less.")]
+            public string EmployeeNotes { get; set; }//nullable
+
+            [Required(ErrorMessage = "*Required")]
             public bool IsActive { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
             public System.DateTime DateAdded { get; set; }
+
+            [StringLength(200, ErrorMessage = "* Must be 200 characters or less.")]
             public string Review { get; set; }
         }
 
@@ -72,9 +91,17 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
         public partial class Reservation { }
         public class ReservationMetadata
         {
+            [Required(ErrorMessage = "*Required")]
             public int ReserationID { get; set; }
-            //public int OwnerAssetID { get; set; }
-            //public int LocationID { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            public int OwnerAssetID { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            public int LocationID { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
             public System.DateTime ReservationDate { get; set; }
         }
 
@@ -85,8 +112,16 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
         public partial class UserDetail { }
         public class UserDetailMetadata
         {
-            //public string UserID { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            public string UserID { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            [StringLength(50, ErrorMessage = "* Must be 50 characters or less.")]
             public string FirstName { get; set; }
+
+            [Required(ErrorMessage = "*Required")]
+            [StringLength(50, ErrorMessage = "* Must be 50 characters or less.")]
             public string LastName { get; set; }
         }
         
