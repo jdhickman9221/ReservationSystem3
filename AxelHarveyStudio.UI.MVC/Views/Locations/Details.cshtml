@@ -1,13 +1,13 @@
 ﻿@model AxelHarveyStudio.DATA.EF.Location
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.LocationName + " Details";
 }
 
-<h2>Details</h2>
+<h2>@ViewBag.Title</h2>
 
 <div>
-    <h4>Location</h4>
+   
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -61,6 +61,10 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.LocationID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @if (User.IsInRole("Admin") && Request.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.LocationID })
+    }
+
+    @Html.ActionLink("Back to Rooms", "Index")
 </p>

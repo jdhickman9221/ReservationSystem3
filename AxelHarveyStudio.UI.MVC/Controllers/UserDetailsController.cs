@@ -10,113 +10,108 @@ using AxelHarveyStudio.DATA.EF;
 
 namespace AxelHarveyStudio.UI.MVC.Controllers
 {
-    public class OwnerAssetsController : Controller
+    [Authorize (Roles ="Admin")]
+    public class UserDetailsController : Controller
     {
         private ReservationSystemEntities db = new ReservationSystemEntities();
 
-        // GET: OwnerAssets
+        // GET: UserDetails
         public ActionResult Index()
         {
-            var ownerAssets = db.OwnerAssets.Include(o => o.UserDetail);
-            return View(ownerAssets.ToList());
+            return View(db.UserDetails.ToList());
         }
 
-        // GET: OwnerAssets/Details/5
-        public ActionResult Details(int? id)
+        // GET: UserDetails/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OwnerAsset ownerAsset = db.OwnerAssets.Find(id);
-            if (ownerAsset == null)
+            UserDetail userDetail = db.UserDetails.Find(id);
+            if (userDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(ownerAsset);
+            return View(userDetail);
         }
 
-        // GET: OwnerAssets/Create
+        // GET: UserDetails/Create
         public ActionResult Create()
         {
-            ViewBag.UserID = new SelectList(db.UserDetails, "UserID", "FirstName");
             return View();
         }
 
-        // POST: OwnerAssets/Create
+        // POST: UserDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OwnerAssetID,AssetName,UserID,AssetPhoto,OwnerNotes,EmployeeNotes,IsActive,DateAdded,Review")] OwnerAsset ownerAsset)
+        public ActionResult Create([Bind(Include = "UserID,FirstName,LastName")] UserDetail userDetail)
         {
             if (ModelState.IsValid)
             {
-                db.OwnerAssets.Add(ownerAsset);
+                db.UserDetails.Add(userDetail);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserID = new SelectList(db.UserDetails, "UserID", "FirstName", ownerAsset.UserID);
-            return View(ownerAsset);
+            return View(userDetail);
         }
 
-        // GET: OwnerAssets/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: UserDetails/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OwnerAsset ownerAsset = db.OwnerAssets.Find(id);
-            if (ownerAsset == null)
+            UserDetail userDetail = db.UserDetails.Find(id);
+            if (userDetail == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.UserDetails, "UserID", "FirstName", ownerAsset.UserID);
-            return View(ownerAsset);
+            return View(userDetail);
         }
 
-        // POST: OwnerAssets/Edit/5
+        // POST: UserDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OwnerAssetID,AssetName,UserID,AssetPhoto,OwnerNotes,EmployeeNotes,IsActive,DateAdded,Review")] OwnerAsset ownerAsset)
+        public ActionResult Edit([Bind(Include = "UserID,FirstName,LastName")] UserDetail userDetail)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(ownerAsset).State = EntityState.Modified;
+                db.Entry(userDetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.UserDetails, "UserID", "FirstName", ownerAsset.UserID);
-            return View(ownerAsset);
+            return View(userDetail);
         }
 
-        // GET: OwnerAssets/Delete/5
-        [Authorize(Roles ="Admin")]
-        public ActionResult Delete(int? id)
+        // GET: UserDetails/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OwnerAsset ownerAsset = db.OwnerAssets.Find(id);
-            if (ownerAsset == null)
+            UserDetail userDetail = db.UserDetails.Find(id);
+            if (userDetail == null)
             {
                 return HttpNotFound();
             }
-            return View(ownerAsset);
+            return View(userDetail);
         }
 
-        // POST: OwnerAssets/Delete/5
+        // POST: UserDetails/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            OwnerAsset ownerAsset = db.OwnerAssets.Find(id);
-            db.OwnerAssets.Remove(ownerAsset);
+            UserDetail userDetail = db.UserDetails.Find(id);
+            db.UserDetails.Remove(userDetail);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<AxelHarveyStudio.DATA.EF.OwnerAsset>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Your Sessions";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Booking", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.AssetName)
         </th>
@@ -32,14 +35,15 @@
         <th>
             @Html.DisplayNameFor(model => model.Review)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserDetail.FirstName)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.AssetName)
         </td>
@@ -59,15 +63,19 @@
             @Html.DisplayFor(modelItem => item.DateAdded)
         </td>
         <td>
+            <p>(Wait until your session completion if you'd like to leave a review of our services. To Add go back and Edit.)</p>
             @Html.DisplayFor(modelItem => item.Review)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.UserDetail.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OwnerAssetID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OwnerAssetID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OwnerAssetID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.OwnerAssetID })
+            @Html.ActionLink("Details", "Details", new { id = item.OwnerAssetID })
+
+            @if (Request.IsAuthenticated && User.IsInRole("Admin")
+            {
+            @Html.ActionLink("Delete", "Delete", new { id = item.OwnerAssetID })
+            }
+
         </td>
     </tr>
 }
