@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Your Sessions";
 }
-
+<br/><br/>
+<br/><br/>
 <h2>@ViewBag.Title</h2>
 
 <p>
@@ -71,7 +72,7 @@
             @Html.ActionLink("Edit", "Edit", new { id = item.OwnerAssetID })
             @Html.ActionLink("Details", "Details", new { id = item.OwnerAssetID })
 
-            @if (Request.IsAuthenticated && User.IsInRole("Admin")
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
             {
             @Html.ActionLink("Delete", "Delete", new { id = item.OwnerAssetID })
             }

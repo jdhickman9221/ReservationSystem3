@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Studio Reservations";
 }
-
+<br /><br />
+<br /><br />
 <h2>@ViewBag.Title</h2>
 
 <p>
@@ -23,27 +24,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.LocationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OwnerAsset.AssetName)
-        </td>
-        @if (User.IsInRole("Admin") && Request.IsAuthenticated
-        {
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ReserationID })
-            @Html.ActionLink("Details", "Details", new { id = item.ReserationID })
-            @Html.ActionLink("Delete", "Delete", new { id = item.ReserationID })
-        </td>
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReservationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerAsset.AssetName)
+            </td>
+            @if (User.IsInRole("Admin") && Request.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ReserationID })
+                    @Html.ActionLink("Details", "Details", new { id = item.ReserationID })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ReserationID })
+                </td>
+            }
 
-    </tr>
-}
+        </tr>
+    }
 
 </table>

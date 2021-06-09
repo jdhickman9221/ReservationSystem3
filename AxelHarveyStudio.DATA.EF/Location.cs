@@ -27,6 +27,8 @@ namespace AxelHarveyStudio.DATA.EF
         public string State { get; set; }
         public string ZipCode { get; set; }
         public byte ReservationLimit { get; set; }
+        public string Description { get; set; }
+        public string LocationLogo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Reservation> Reservations { get; set; }
