@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d950afdb22f347e891717ef85badf5f1" Name="Diagram1">
+      <Diagram DiagramId="d950afdb22f347e891717ef85badf5f1" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="ReservationSystemModel.Location" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="ReservationSystemModel.OwnerAsset" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="ReservationSystemModel.Reservation" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
@@ -13,6 +13,15 @@
         <AssociationConnector Association="ReservationSystemModel.FK_Reservations_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="ReservationSystemModel.FK_OwnerAssets_UserDetails" ManuallyRouted="false" />
         <AssociationConnector Association="ReservationSystemModel.FK_Reservations_OwnerAssets" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ReservationSystemModel.C__MigrationHistory" Width="1.5" PointX="8.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ReservationSystemModel.AspNetRole" Width="1.5" PointX="5.375" PointY="9.5" />
+        <EntityTypeShape EntityType="ReservationSystemModel.AspNetUserClaim" Width="1.5" PointX="9.875" PointY="10.625" />
+        <EntityTypeShape EntityType="ReservationSystemModel.AspNetUserLogin" Width="1.5" PointX="9.875" PointY="8" />
+        <EntityTypeShape EntityType="ReservationSystemModel.AspNetUser" Width="1.5" PointX="7.625" PointY="8.375" />
+        <AssociationConnector Association="ReservationSystemModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ReservationSystemModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="ReservationSystemModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ReservationSystemModel.PortfolioItem" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

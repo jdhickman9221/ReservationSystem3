@@ -146,10 +146,31 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
         }
-        
+
         #endregion
 
+        #region PorfolioItems
+        [Required(ErrorMessage = "*Required")]
+        [Display(Name = "ID")]
+        public int JobID { get; set; }
 
+        [Required(ErrorMessage = "*Required")]
+        [StringLength(50, ErrorMessage = "* Must be 50 characters or less.")]
+        [Display(Name = "Title")]
+        public string JobName { get; set; }
+
+        [StringLength(50, ErrorMessage = "* Must be 50 characters or less.")]
+        public string Photo { get; set; }
+
+        [StringLength(200, ErrorMessage = "* Must be 200 characters or less.")]
+        [Display(Name ="Description")]
+        public string JobDescription { get; set; }
+
+        [StringLength(200, ErrorMessage = "* Must be 200 characters or less.")]
+        [Display(Name = "Client Review")]
+        public string JobReview { get; set; }
+
+        #endregion
 
 
 

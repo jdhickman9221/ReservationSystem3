@@ -50,11 +50,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>ReservationSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>ReservationSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>ReservationSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>ReservationSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>ReservationSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Location.cs">
       <DependentUpon>ReservationSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Metadata\ReservationSystemMetadata.cs" />
     <Compile Include="OwnerAsset.cs">
+      <DependentUpon>ReservationSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PortfolioItem.cs">
       <DependentUpon>ReservationSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
