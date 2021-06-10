@@ -1,98 +1,110 @@
 ﻿@model AxelHarveyStudio.DATA.EF.OwnerAsset
 
 @{
-    ViewBag.Title = "Edit " + Model.AssetName;
+    ViewBag.Title = "Edit: " + Model.AssetName;
 }
 <br /><br />
 <br /><br />
-<h2>ViewBag.Title</h2>
+<br /><br />
+<h2 class="text-center">@ViewBag.Title</h2>
 
-
-@using (Html.BeginForm())
+@* Image Upload Step 3: add overloads to the Using Begin Form. *@
+@using (Html.BeginForm("Edit", "OwnerAssets", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.OwnerAssetID)
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.OwnerAssetID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AssetName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AssetName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AssetName, "", new { @class = "text-danger" })
-            </div>
+    @* Image Upload Step 4: add HiddenFor for the file object, for editing purposes we need to do a comparison operator later. *@
+    @Html.HiddenFor(model => model.AssetPhoto)
+
+    <div class="form-group text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.AssetName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.AssetName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AssetName, "", new { @class = "text-danger" })
         </div>
-
-        <div class="form-group">
+    </div>
+    <div class="form-group text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.OwnerNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.OwnerNotes, new { htmlAttributes = new { @class = "form-control", @rows = "10" } })
+            @Html.ValidationMessageFor(model => model.OwnerNotes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="form-group">
             @Html.LabelFor(model => model.UserID, "UserID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6 offset-3 text-center">
                 @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AssetPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.AssetPhoto, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.AssetPhoto, "", new { @class = "text-danger" })
+    <div class="form-group text-center" style="padding-bottom: 1rem;">
+        @Html.LabelFor(model => model.AssetPhoto, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-bottom: 1rem;" })
+        <div class="col-md-2 offset-5">
+            @*@Html.EditorFor(model => model.AssetPhoto, new { htmlAttributes = new { @class = "form-control" } })*@
+
+            @* Image Upload step 5: replace the EditorFor and ValidationMessageFor. You want another input here, while also
+                displaying the EXISTING photo/file.*@
+            <img class="" width="200" src="@Url.Content("~/Content/assets/img/uploads/"+Model.AssetPhoto)" /><br /><br />
+            <input type="file" name="AssetPhoto" style="display:inline" />
+            @*@Html.ValidationMessageFor(model => model.AssetPhoto, "", new { @class = "text-danger" })*@
+
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-bottom: 3rem; padding-left: 1.5rem;">
+
+        <div class="col-md-6 offset-3 text-center">
+            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label" })
+            <div class="checkbox" style="display: inline; padding-left: .5rem;">
+                @Html.EditorFor(model => model.IsActive)
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.OwnerNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.OwnerNotes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.OwnerNotes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeNotes, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EmployeeNotes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EmployeeNotes, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsActive)
-                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
+    @*<div class="form-group">
             @Html.LabelFor(model => model.DateAdded, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DateAdded, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DateAdded, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Review, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Review, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Review, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.Review, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.Review, new { htmlAttributes = new { @class = "form-control", @rows = "10", @placeholder = "After your booked session is complete, feel free to leave us a review! Thank you so much!" } })
+            @Html.ValidationMessageFor(model => model.Review, "", new { @class = "text-danger" })
         </div>
     </div>
+    @if (User.IsInRole("Admin") || User.IsInRole("Employee") && Request.IsAuthenticated)
+    {
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @Html.LabelFor(model => model.EmployeeNotes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.EmployeeNotes, new { htmlAttributes = new { @class = "form-control", @rows = "10" } })
+                @Html.ValidationMessageFor(model => model.EmployeeNotes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+
+
+    <div class="form-group" style="padding-bottom: 1rem;">
+        <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
-<div>
+<div class="text-center">
     @Html.ActionLink("Cancel", "Index")
 </div>
 

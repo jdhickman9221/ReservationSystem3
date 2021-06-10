@@ -164,14 +164,14 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
                     ReservationSystemEntities db = new ReservationSystemEntities();
                     db.UserDetails.Add(newUserDeets);
                     db.SaveChanges();
-
-
                     #endregion
+
+
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
-                    return View("Login", "Account");
+                    return View("Login");
                 }
                 AddErrors(result);
             }

@@ -5,7 +5,8 @@
 }
 <br /><br />
 <br /><br />
-<h2>@ViewBag.Title</h2>
+<br /><br />
+<h2 class="text-center">@ViewBag.Title</h2>
 
 <div>
 
@@ -27,12 +28,13 @@
             @Html.DisplayFor(model => model.AssetName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.AssetPhoto)
-        </dt>
+        </dt>*@
 
         <dd>
-            @Html.DisplayFor(model => model.AssetPhoto)
+            @*@Html.DisplayFor(model => model.AssetPhoto)*@
+            <img src="~/Content/assets/img/uploads/@Model.AssetPhoto" alt="@Model.AssetName"/>
         </dd>
 
         <dt>

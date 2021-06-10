@@ -55,8 +55,8 @@
         @if (User.IsInRole("Admin") && Request.IsAuthenticated)
         {
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.LocationID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) 
+                @Html.ActionLink("Details", "Details", new { id = item.LocationID }) 
                 @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
             </td>
         }
