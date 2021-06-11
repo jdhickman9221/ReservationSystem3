@@ -1,13 +1,13 @@
 ﻿@model AxelHarveyStudio.DATA.EF.Location
 
 @{
-    ViewBag.Title = Model.LocationName + " Details";
+    ViewBag.Title = "Details";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Details</h2>
 
 <div>
-   
+    <h4>Location</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -58,13 +58,25 @@
             @Html.DisplayFor(model => model.ReservationLimit)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LocationLogo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocationLogo)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @if (User.IsInRole("Admin") && Request.IsAuthenticated)
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.LocationID })
-    }
-
-    @Html.ActionLink("Back to Rooms", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LocationID }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

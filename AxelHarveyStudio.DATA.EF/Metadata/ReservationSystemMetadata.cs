@@ -16,7 +16,7 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
     public class LocationMetadata
     {
         [Required(ErrorMessage = "*Required")]
-        [Display(Name = "Location ID")]
+        [Display(Name = "Studio Location")]
         public int LocationID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
@@ -43,9 +43,11 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
 
         [Required(ErrorMessage = "*Required")]
         [Display(Name = "Day Slots")]
+        
         public byte ReservationLimit { get; set; }
 
         [StringLength(200, ErrorMessage = "* Must be 200 characters.")]
+        [UIHint("MultilineText")]
         public string Description { get; set; }
 
         [Display(Name = "Logo")]
@@ -67,7 +69,7 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
 
         [Required(ErrorMessage = "*Required")]
         [StringLength(50, ErrorMessage = "* Must be 50 characters or less.")]
-        [Display(Name = "Member Name")]
+        [Display(Name = "Member Name:")]
         public string AssetName { get; set; }
 
        
@@ -114,12 +116,12 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
         [Display(Name = "Reservation")]
         public int ReserationID { get; set; }
 
-        [Required(ErrorMessage = "*Required")]
+        [Required(ErrorMessage = "*Required, Create a Member to book with first! Click 'Members' in the navigation bar.")]
         [Display(Name = "Asset ID")]
         public int OwnerAssetID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
-        [Display(Name = "Location")]
+        [Display(Name = "Location:")]
         public int LocationID { get; set; }
 
         [Required(ErrorMessage = "*Required")]

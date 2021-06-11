@@ -2,30 +2,28 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AxelHarveyStudio.DATA.EF;
+using AxelHarveyStudio.UI.MVC.Utilitites;
 
 namespace AxelHarveyStudio.UI.MVC.Controllers
 {
-    [Authorize]
     public class LocationsController : Controller
     {
         private ReservationSystemEntities db = new ReservationSystemEntities();
 
         // GET: Locations
-        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Locations.ToList());
         }
 
         // GET: Locations/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
-
         {
             if (id == null)
             {
@@ -40,7 +38,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         }
 
         // GET: Locations/Create
-        [Authorize (Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -51,8 +49,36 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "LocationID,LocationName,Address,City,State,ZipCode,ReservationLimit")] Location location)
+        public ActionResult Create([Bind(Include = "LocationID,LocationName,Address,City,State,ZipCode,ReservationLimit,Description,LocationPhoto")] Location location, HttpPostedFileBase LocationPhoto)
         {
+            #region FileUpload
+            string imgName = "noImage.png";
+
+            if (LocationPhoto != null)
+            {
+                imgName = LocationPhoto.FileName;
+                string ext = imgName.Substring(imgName.LastIndexOf('.'));
+                string[] goodExts = { ".jpg", ".jpg", ".gif", ".png" };
+
+                if (goodExts.Contains(ext.ToLower()) && (LocationPhoto.ContentLength <= 4194304))
+                {
+                    imgName = Guid.NewGuid() + ext;
+
+                    #region Resize Image
+                    string savePath = Server.MapPath("~/Content/assets/img/uploads/");
+                    Image convertedImage = Image.FromStream(LocationPhoto.InputStream);
+                    int maxImageSize = 500;
+                    int maxThumbSize = 100;
+                    #endregion
+
+                    ImageServices.ResizeImage(savePath, imgName, convertedImage, maxImageSize, maxThumbSize);
+                }//end if statement
+            }//end if statement
+            location.LocationLogo = imgName;
+            if (!ModelState.IsValid)
+            {
+                return View(location);
+            }
             if (ModelState.IsValid)
             {
                 db.Locations.Add(location);
@@ -62,6 +88,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
 
             return View(location);
         }
+        #endregion
 
         // GET: Locations/Edit/5
         [Authorize(Roles = "Admin")]
@@ -84,19 +111,51 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LocationID,LocationName,Address,City,State,ZipCode,ReservationLimit")] Location location)
+        public ActionResult Edit([Bind(Include = "LocationID,LocationName,Address,City,State,ZipCode,ReservationLimit,Description,LocationPhoto")] Location location, HttpPostedFileBase LocationPhoto)
         {
+
+
             if (ModelState.IsValid)
             {
+
+                string imgName = location.LocationLogo;
+                if (LocationPhoto != null)
+                {
+                    imgName = LocationPhoto.FileName;
+                    string ext = imgName.Substring(imgName.LastIndexOf('.'));
+                    string[] goodExts = { ".jpeg", ".jpg", ".gif", ".png" };
+
+                    if (goodExts.Contains(ext.ToLower()) && (LocationPhoto.ContentLength <= 4194304))
+                    {
+                        imgName = Guid.NewGuid() + ext;
+
+                        #region Resize Image
+                        string savePath = Server.MapPath("~/Content/assets/img/uploads/");
+                        Image convertedImage = Image.FromStream(LocationPhoto.InputStream);
+                        int maxImageSize = 500;
+                        int maxThumbSize = 100;
+
+                        ImageServices.ResizeImage(savePath, imgName, convertedImage, maxImageSize, maxThumbSize);
+                        #endregion
+
+                        if (location.LocationLogo != null && location.LocationLogo != "noImage.png")
+                        {
+                            string path = Server.MapPath("~/Content/assets/img/uploads/");
+                            ImageServices.Delete(path, location.LocationLogo);
+                        }//end if statement
+                    }//end if statement
+                }//end if statment
+
+                location.LocationLogo = imgName;
+
+
                 db.Entry(location).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
+            }//end if statement
             return View(location);
         }
-
         // GET: Locations/Delete/5
-        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,6 +176,11 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Location location = db.Locations.Find(id);
+
+            if (location.LocationLogo != null && location.LocationLogo != "noImage.png")
+            {
+                System.IO.File.Delete(Server.MapPath("~/Content/assets/img/uploads/" + Session["currentImage"].ToString()));
+            }
             db.Locations.Remove(location);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -3,78 +3,98 @@
 @{
     ViewBag.Title = "Edit " + Model.LocationName;
 }
+<br /><br />
+<br /><br />
+<br /><br />
+<h2 class="text-center">@ViewBag.Title</h2>
 
-<h2>@ViewBag.Title</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Locations", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-       
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.LocationID)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LocationName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LocationName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<div class="form-horizontal">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.LocationID)
+    @Html.HiddenFor(model => model.LocationLogo)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReservationLimit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReservationLimit, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReservationLimit, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.LocationName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.LocationName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.LocationName, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group  text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group  text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group  text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group  text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group  text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.ReservationLimit, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.ReservationLimit, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReservationLimit, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group  text-center" style="padding-bottom: 3rem;">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6 offset-3 text-center">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group text-center" style="padding-bottom: 1rem;">
+        @Html.LabelFor(model => model.LocationLogo, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-bottom: 1rem;" })
+        <div class="col-md-2 offset-5">
+            <img class="" width="200" src="@Url.Content("~/Content/assets/img/uploads/"+Model.LocationLogo)" /><br /><br />
+            <input type="file" name="LocationPhoto" style="display:inline" />
+        </div>
+    </div>
+
+    <div class="form-group" style="padding-bottom: 1rem;">
+        <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+
 }
 
-<div>
-    @Html.ActionLink("Cancel", "Index")
+<div class="text-center">
+    @Html.ActionLink("Cancel Edit", "Index")
 </div>
 
 @section Scripts {

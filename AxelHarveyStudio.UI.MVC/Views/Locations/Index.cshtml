@@ -1,67 +1,107 @@
 ﻿@model IEnumerable<AxelHarveyStudio.DATA.EF.Location>
 
 @{
-    ViewBag.Title = "Our Rooms";
+                /**/
+
+                ViewBag.Title = "Our Studios";
+}
+<br /><br />
+<br /><br />
+<br /><br />
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<p class="text-center">Locations are a list of studios under the Axel Harvey Umbrella! (click to see details)</p>
+
+@if (User.IsInRole("Admin") && Request.IsAuthenticated)
+{
+    <div class="text-center" style="padding-bottom: 1rem;">
+        @Html.ActionLink("Create Location", "Create")
+    </div>
+    <div class="text-center" style="padding-bottom: 1rem;">@Html.ActionLink("My Bookings", "Index", "Reservations")</div>
+}
+else
+{
+    <div class="text-center" style="padding-bottom: 1rem;">@Html.ActionLink("My Bookings", "Index", "Reservations")</div>
 }
 
-<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LocationName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReservationLimit)
-        </th>
-        <th></th>
-    </tr>
+<section class="page-section bg-light" id="portfolio">
+    @if (Model.Count() == 0)
+    {
+        <h4 class="text-center"><em>You currently have no locations! The admin is either updating the web application or something went wrong!</em></h4>
+    }
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LocationName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReservationLimit)
-        </td>
-        @if (User.IsInRole("Admin") && Request.IsAuthenticated)
-        {
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) 
-                @Html.ActionLink("Details", "Details", new { id = item.LocationID }) 
-                @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
-            </td>
-        }
+                string modalString = "modal" + item.LocationID;
 
-    </tr>
-}
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 1-->
+                    <div class="portfolio-item">
+                        <a class="portfolio-link" data-bs-toggle="modal" href="#@modalString">
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-info-circle fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="~/Content/assets/img/uploads/@item.LocationLogo" alt="@item.LocationName" />
+                        </a>
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">@item.LocationName</div>
+                            <div class="portfolio-caption-subheading text-muted">@item.Address, @item.City</div>
+                        </div>
+                    </div>
+                </div>
 
-</table>
+                <div class="portfolio-modal modal fade" id="@modalString" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <div class="modal-body">
+                                            <!-- Project details-->
+                                            <h3 class="text-uppercase">@item.LocationName</h3>
+                                            <p class="item-intro text-muted">@item.Address, @item.City</p>
+                                            <img class="img-fluid d-block mx-auto" src="~/Content/assets/img/uploads/@item.LocationLogo" alt="@item.LocationName" />
+                                            <ul class="list-inline"></ul>
+                                            <p>About: <br />"<em>@item.Description</em>"</p>
+
+                                            <a href="@Url.Action("Create", "Reservations")" class="btn btn-dark btn-xl text-uppercase" style="padding:1.5rem;"> 
+                                                <i class="fas fa-plus me-1"></i>
+                                                Book Now!
+                                            </a>
+                                            <button class="btn btn-primary btn-xl text-uppercase" data-bs-dismiss="modal" style="padding:1.5rem;" type="button">
+                                                <i class="fas fa-times me-1"></i>
+                                                Close
+                                            </button>
+                                            @if (Request.IsAuthenticated && User.IsInRole("Employee") || User.IsInRole("Admin"))
+                                            {
+                                            <a href="@Url.Action("Index", "Reservations")" class="btn btn-success btn-xl text-uppercase"  type="button" style="padding:1.5rem;">
+                                                <i class="fas fa-info-circle me-1"></i>
+                                               Bookings
+                                            </a>
+                                            }
+
+
+                                        </div>
+                                        @if (User.IsInRole("Admin") && Request.IsAuthenticated)
+                                        {
+                                            <span style="padding: 1.5rem; display: inline-block;"><a href="@Url.Action("Edit","Locations", new { id = item.LocationID })"><i class=" fas fa-edit fa-3x " alt="edit"></i></a></span>
+                                            <span style="padding: 1.5rem; display: inline-block;"><a href="@Url.Action("Delete","Locations", new { id = item.LocationID })"><i class="fas fa-dumpster-fire fa-3x " alt="delete"></i></a></span>
+                                            @*<li>@Html.ActionLink("Delete", "Delete", new { id = item.LocationID })</li>*@
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+</section>

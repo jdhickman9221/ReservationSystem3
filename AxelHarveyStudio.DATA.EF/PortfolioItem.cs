@@ -19,5 +19,6 @@ namespace AxelHarveyStudio.DATA.EF
         public string Photo { get; set; }
         public string JobDescription { get; set; }
         public string JobReview { get; set; }
+        public string ProjectLink { get; set; }
     }
 }

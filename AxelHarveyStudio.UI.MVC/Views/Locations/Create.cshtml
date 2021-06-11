@@ -3,76 +3,92 @@
 @{
     ViewBag.Title = "Create Studio Location";
 }
+<br /><br />
+<br /><br />
+<br /><br />
+<h2 class="text-center">@ViewBag.Title</h2>
 
-<h2>@ViewBag.Title</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Locations", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.LocationName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LocationName, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @*@Html.LabelFor(model => model.LocationName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.LocationName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name of Location" } })
                 @Html.ValidationMessageFor(model => model.LocationName, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @*@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address" } })
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group" style="padding-bottom: 3rem;">
+            @*@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @placeholder = "City" } })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @*@Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @placeholder = "State" } })
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @*@Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control", @placeholder = "Zip" } })
                 @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ReservationLimit, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ReservationLimit, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @*@Html.LabelFor(model => model.ReservationLimit, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-6 offset-3 text-center">
+                @Html.EditorFor(model => model.ReservationLimit, new { htmlAttributes = new { @class = "form-control", @placeholder = "Reservation Limit" } })
                 @Html.ValidationMessageFor(model => model.ReservationLimit, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            @Html.LabelFor(model => model.LocationLogo, htmlAttributes: new { @class = "control-label col-md-2", @style = "padding-bottom: 1rem;" })
+            <div class="col-md-2 offset-5">
+                @* Image Upload step 2: comment out EditorFor. Replace with Input tag (type = file,
+                    name = AssetPhoto, style=Display: inline). The name of this attribute MUST MATCH the value passed into the POST later
+                    on. Spelling matters, casing does not.*@
+                <input class="" type="file" name="LocationPhoto" style="" />
+                @*@Html.EditorFor(model => model.AssetPhoto, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.LocationLogo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group" style="padding-bottom: 1rem;">
+            <div class="text-center">
+                <input type="submit" value="Create Location" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+<div class="text-center">
+    @Html.ActionLink("Cancel Creation", "Index")
 </div>
 
 @section Scripts {

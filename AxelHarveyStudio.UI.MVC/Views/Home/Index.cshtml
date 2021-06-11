@@ -1,12 +1,12 @@
 ﻿
-@{ 
+@{
     ViewBag.Title = "Home";
 }
 
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <span><img style="padding-bottom: 2rem; width: 200px; "src="~/Content/assets/img/logos/AxelHarveyLogo2.png"/></span>
+        <span><img style="padding-bottom: 2rem; width: 200px; " src="~/Content/assets/img/logos/AxelHarveyLogo2.png" /></span>
         <div class="masthead-subheading">Welcome To Axel Harvey Productions!</div>
         <div class="masthead-heading text-uppercase">Epic Fidelity.  Chill Atmosphere.</div>
         <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
@@ -70,41 +70,47 @@
                 <div class="timeline-image"><img class="rounded-circle img-fluid" src="~/Content/assets/img/about/2.jpg" alt="..." /></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4>March 2011</h4>
+                        <h4>2020</h4>
                         <h4 class="subheading">An Studio is Born</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                    <div class="timeline-body"><p class="text-muted">It all started in a few of our bedrooms. Until one day we all pitched in to get a basement remodel and a friend's house. Our journey begins setting up the rooms in dozens of ways. Experimenting. </p></div>
                 </div>
             </li>
             <li>
                 <div class="timeline-image"><img class="rounded-circle img-fluid" src="~/Content/assets/img/about/3.jpg" alt="..." /></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4>December 2015</h4>
+                        <h4>2021</h4>
                         <h4 class="subheading">Transition to Full Service</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                    <div class="timeline-body"><p class="text-muted">High Fidelity. Chill Atmosphere. That's our promise. 2020 had brought a lot of reflection for all of us. This also gave musicians the perfect amount of alone time to get new songs written and we have updated to provide <strong>full service</strong>! We're ready, are you?</p></div>
                 </div>
             </li>
             <li class="timeline-inverted">
                 <div class="timeline-image"><img class="rounded-circle img-fluid" src="~/Content/assets/img/about/4.jpg" alt="..." /></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4>July 2020</h4>
-                        <h4 class="subheading">Phase Two Expansion</h4>
+                        <h4>Book Now for @DateTime.Now.Year!</h4>
+                        <h4 class="subheading">Full Service Record / Mixing / Mastering</h4>
                     </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
+                    <div class="timeline-body"><p class="text-muted"><a href="@Url.Action("Contact","Home")">Contact us</a> for a quote and when you're ready, come back and create an account to book a time! If you've already created an account, what are you waiting for? Let us make your next new <strong>heavy hit</strong>!</p></div>
                 </div>
             </li>
 
             <li class="timeline-inverted">
                 <div class="timeline-image">
                     <h4>
-                        Be Part
                         <br />
-                        Of Our
-                        <br />
-                        Story!
+                        @if (Request.IsAuthenticated)
+                        {
+                        <a style="color:white;" href="@Url.Action("Index","Reservations")">BOOK NOW!</a>
+                        }
+                        else
+                        {
+                        <a style="color:white;" href="@Url.Action("Login","Account","Account")">BOOK NOW!</a>   
+                        }
+                        
+
                     </h4>
                 </div>
             </li>

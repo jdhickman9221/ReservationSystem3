@@ -200,6 +200,7 @@
     <Content Include="Content\assets\img\about\studio3.jpg" />
     <Content Include="Content\assets\img\about\studio4.jpg" />
     <Content Include="Content\assets\img\close-icon.svg" />
+    <Content Include="Content\assets\img\about\ErrorView.gif" />
     <Content Include="Content\assets\img\header-bg.jpg" />
     <Content Include="Content\assets\img\logos\Acoustic.png" />
     <Content Include="Content\assets\img\logos\android-chrome-192x192.png" />
@@ -333,11 +334,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Team.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
-    <Content Include="Views\Locations\Create.cshtml" />
-    <Content Include="Views\Locations\Delete.cshtml" />
-    <Content Include="Views\Locations\Details.cshtml" />
-    <Content Include="Views\Locations\Edit.cshtml" />
-    <Content Include="Views\Locations\Index.cshtml" />
     <Content Include="Views\OwnerAssets\Create.cshtml" />
     <Content Include="Views\OwnerAssets\Delete.cshtml" />
     <Content Include="Views\OwnerAssets\Details.cshtml" />
@@ -353,6 +349,13 @@
     <Content Include="Views\UserDetails\Details.cshtml" />
     <Content Include="Views\UserDetails\Edit.cshtml" />
     <Content Include="Views\UserDetails\Index.cshtml" />
+    <Content Include="Views\Shared\_Locations.cshtml" />
+    <Content Include="Views\Locations\Create.cshtml" />
+    <Content Include="Views\Locations\Delete.cshtml" />
+    <Content Include="Views\Locations\Details.cshtml" />
+    <Content Include="Views\Locations\Edit.cshtml" />
+    <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Shared\ErrorView.cshtml" />
     <Content Include="Views\PortfolioItems\Create.cshtml" />
     <Content Include="Views\PortfolioItems\Delete.cshtml" />
     <Content Include="Views\PortfolioItems\Details.cshtml" />

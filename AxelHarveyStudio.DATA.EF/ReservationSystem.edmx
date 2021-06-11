@@ -103,6 +103,7 @@
           <Property Name="Photo" Type="varchar" MaxLength="100" />
           <Property Name="JobDescription" Type="varchar" MaxLength="200" />
           <Property Name="JobReview" Type="varchar" MaxLength="200" />
+          <Property Name="ProjectLink" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Reservations">
           <Key>
@@ -503,6 +504,7 @@
           <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="JobDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="JobReview" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ProjectLink" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -636,6 +638,7 @@
           <EntitySetMapping Name="PortfolioItems">
             <EntityTypeMapping TypeName="ReservationSystemModel.PortfolioItem">
               <MappingFragment StoreEntitySet="PortfolioItems">
+                <ScalarProperty Name="ProjectLink" ColumnName="ProjectLink" />
                 <ScalarProperty Name="JobReview" ColumnName="JobReview" />
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />

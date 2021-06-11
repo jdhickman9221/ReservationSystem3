@@ -1,0 +1,32 @@
+﻿@model AxelHarveyStudio.DATA.EF.Reservation
+
+
+
+@{
+    ViewBag.Title = "Full Reservations";
+}
+<br /><br />
+<br /><br />
+<br /><br />
+
+<div class="d-flex justify-content-center align-items-center">
+    <img src="~/Content/assets/img/about/ErrorView.gif" alt="mosh pit gif" />
+</div>
+<br />
+<h2 class="text-center">Right now, this is <em>you</em>... Caught up in our traffic...</h2>
+<br />
+<p class="text-center">
+    <em>  We apologize, we are all booked up on this date! Bookings cancel often so leave us an e-mail if you'd like to be considered for this date.<br /> <strong> We can't wait to mosh with you.<br />- Axel Harvey Staff</strong></em>
+</p>
+
+<br />
+
+<div class="row">
+    <div class="col-md-1 offset-5" style=" padding-bottom: 1rem;">
+        @Html.ActionLink("Contact", "Contact", "Home", new { @class = "btn btn-dark" })
+    </div>
+    <div class="col-md-2">
+        @Html.ActionLink("Back", "Index", "Reservations", new { @class = "btn btn-dark" })
+    </div>
+
+</div>

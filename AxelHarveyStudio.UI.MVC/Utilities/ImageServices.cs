@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 
-namespace SAT.UI.MVC.Utilitites
+namespace AxelHarveyStudio.UI.MVC.Utilitites
 {
     public class ImageServices
     {

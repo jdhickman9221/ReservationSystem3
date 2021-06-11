@@ -10,7 +10,6 @@ using AxelHarveyStudio.DATA.EF;
 
 namespace AxelHarveyStudio.UI.MVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class PortfolioItemsController : Controller
     {
         private ReservationSystemEntities db = new ReservationSystemEntities();
@@ -22,7 +21,6 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         }
 
         // GET: PortfolioItems/Details/5
-        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -48,7 +46,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "JobID,JobName,Photo,JobDescription,JobReview")] PortfolioItem portfolioItem)
+        public ActionResult Create([Bind(Include = "JobID,JobName,Photo,JobDescription,JobReview,ProjectLink")] PortfolioItem portfolioItem)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +78,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "JobID,JobName,Photo,JobDescription,JobReview")] PortfolioItem portfolioItem)
+        public ActionResult Edit([Bind(Include = "JobID,JobName,Photo,JobDescription,JobReview,ProjectLink")] PortfolioItem portfolioItem)
         {
             if (ModelState.IsValid)
             {

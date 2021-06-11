@@ -1,14 +1,13 @@
 ﻿@model AxelHarveyStudio.DATA.EF.PortfolioItem
 
 @{
-    ViewBag.Title = Model.JobName + "Details";
+    ViewBag.Title = "Details";
 }
-<br /><br />
-<br /><br />
-<h2>@ViewBag.Title</h2>
+
+<h2>Details</h2>
 
 <div>
-    
+    <h4>PortfolioItem</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,6 +40,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.JobReview)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectLink)
         </dd>
 
     </dl>

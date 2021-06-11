@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using AxelHarveyStudio.DATA.EF;
 using Microsoft.AspNet.Identity;
-using SAT.UI.MVC.Utilitites;
+using AxelHarveyStudio.UI.MVC.Utilitites;
 
 namespace AxelHarveyStudio.UI.MVC.Controllers
 {
@@ -22,19 +22,22 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
             
         public ActionResult Index()
         {
+
             //Roadblock highlight 1:
-            if (Request.IsAuthenticated && !User.IsInRole("Admin") || !User.IsInRole("Employee"))
-            {
-                
-                string userID = User.Identity.GetUserId();
-                var userAssets = db.OwnerAssets.Where(a => a.UserID == userID).Include(o => o.UserDetail);
-                
-                return View(userAssets.ToList());
-            }
-            else
+            if (Request.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("Employee"))
             {
                 var ownerAssets = db.OwnerAssets.Include(o => o.UserDetail);
                 return View(ownerAssets.ToList());
+            }
+            else
+            {
+                var currentUser = User.Identity.GetUserId();
+                string userID = User.Identity.GetUserId();
+                var userAssets = db.OwnerAssets.Where(a => a.UserID == userID).Include(o => o.UserDetail);
+
+
+                return View(userAssets.ToList());
+              
             }
             
            
@@ -58,7 +61,9 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         // GET: OwnerAssets/Create
         public ActionResult Create()
         {
+            var currentUser = User.Identity.GetUserId();
             ViewBag.UserID = new SelectList(db.UserDetails, "UserID", "FirstName");
+            ViewBag.AssetCount = db.OwnerAssets.Where(a => a.IsActive && a.UserID == currentUser).Count();
             return View();
         }
 
@@ -225,6 +230,11 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             OwnerAsset ownerAsset = db.OwnerAssets.Find(id);
+
+            if (ownerAsset.AssetPhoto != null && ownerAsset.AssetPhoto != "noImage.png")
+            {
+                System.IO.File.Delete(Server.MapPath("~/Content/assets/img/uploads" + Session["currentImage"].ToString()));
+            }
             db.OwnerAssets.Remove(ownerAsset);
             db.SaveChanges();
             return RedirectToAction("Index");
