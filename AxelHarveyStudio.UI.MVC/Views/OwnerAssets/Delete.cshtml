@@ -5,13 +5,14 @@
 }
 <br /><br />
 <br /><br />
-<h2>ViewBag.Title</h2>
+<br /><br />
 
-<h3>Are you sure you want to delete @Model.AssetName? You can always add a new booking again.</h3>
+
+<h3 class="text-center">Are you sure you want to deactivate @Model.AssetName?</h3>
 <div>
 
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal text-center">
         <dt>
             @Html.DisplayNameFor(model => model.UserDetail.FirstName)
         </dt>
@@ -28,13 +29,13 @@
             @Html.DisplayFor(model => model.AssetName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.AssetPhoto)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AssetPhoto)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.OwnerNotes)
@@ -84,8 +85,8 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+        <div class="form-actions text-center">
+            <input type="submit" value="Deactivate" class="btn btn-default" />
             @Html.ActionLink("Cancel", "Index")
         </div>
     }

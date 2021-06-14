@@ -89,7 +89,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
             {
                 var currentUser = User.Identity.GetUserId();
                 ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "LocationName");
-                ViewBag.OwnerAssetID = new SelectList(db.OwnerAssets.Where(o => o.UserID == currentUser), "OwnerAssetID", "AssetName");
+                ViewBag.OwnerAssetID = new SelectList(db.OwnerAssets.Where(o => o.UserID == currentUser && o.IsActive), "OwnerAssetID", "AssetName");
             }
            
             return View();

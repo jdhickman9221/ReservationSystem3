@@ -5,61 +5,69 @@
 }
 
 
-<br />
-<br />
-<br />
-<br />
-<br />
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <section class="page-section" id="contact">
-        <div class="form-horizontal">
+    
+        <section class="page-section" id="contact" >
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="form-horizontal">
 
-            <hr />
-            <div class="row align-items-stretch mb-5">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group text-center">
-                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6 offset-3">
-                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "Your Name*", @class = "form-control", @id = "name" } })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                <div class="row align-items-stretch mb-5">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group text-center">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2", style = "color: white;" })
+                        <div class="col-md-6 offset-3" style="padding-bottom: 1rem; ">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @placeholder = "What can we call you?*", @class = "form-control", @id = "name" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group text-center">
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6 offset-3">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "Your Email*", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <div class="form-group text-center">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2", style = "color: white;" })
+                        <div class="col-md-6 offset-3" style="padding-bottom: 1rem; ">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @placeholder = "How can we reach you?*", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group text-center">
-                    @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6 offset-3">
-                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @placeholder = "Subject*", @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                    <div class="form-group text-center">
+                        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2", style = "color: white;" })
+                        <div class="col-md-6 offset-3" style="padding-bottom: 1rem; ">
+                            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @placeholder = "What is this about?*", @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group text-center">
-                    @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6 offset-3">
-                        @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @placeholder = "Message*", @class = "form-control", @rows = "5" } })
-                        @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    <div class="form-group text-center">
+                        @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2", style = "color: white;" })
+                        <div class="col-md-6 offset-3" style="padding-bottom: 1rem; ">
+                            @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @placeholder = "Whats on your mind?*", @class = "form-control", @rows = "5" } })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
+                    <p style="color:#ffc800" class="text-center"><em>Kill these <strong>demons</strong> to prove you're <strong>human</strong>!</em></p>
+                    <p style="color:#ffc800" class="text-center"><em>Super Shotgun Cheat: (when start) type: "idkfa"</em></p>
+                    <div class="d-flex justify-content-center">
 
-                <div class="form-group text-center">
-                    <div style="padding: 1.5rem;" class="offset-5 col-md-2">
-                        <input type="submit" value="Create" class="btn btn-primary btn-xl" />
+                        <script src="https://vivirenremoto.github.io/doomcaptcha/script.js?version=16" countdown="on" label="Captcha" enemies="4"></script>
+                    </div>
+                    <div class="form-group text-center">
+                        <div style="padding: 1.5rem;" class="offset-5 col-md-2">
+                            <i><input type="submit" value="Send" class="btn btn-primary btn-xl" /></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+   
 }
 
 

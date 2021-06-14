@@ -230,12 +230,17 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             OwnerAsset ownerAsset = db.OwnerAssets.Find(id);
-
-            if (ownerAsset.AssetPhoto != null && ownerAsset.AssetPhoto != "noImage.png")
+            if (ownerAsset.IsActive == true)
             {
-                System.IO.File.Delete(Server.MapPath("~/Content/assets/img/uploads" + Session["currentImage"].ToString()));
+               
+                    
+                    ownerAsset.IsActive = false;
+                    //This deactivates the member.
+                
             }
-            db.OwnerAssets.Remove(ownerAsset);
+           
+            //db.OwnerAssets.Remove(ownerAsset);
+            db.Entry(ownerAsset).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

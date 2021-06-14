@@ -10,9 +10,15 @@
 <h2 class="text-center">@ViewBag.Title</h2>
 <p class="text-center">Members are logs about what you're trying to book time for. Try creating one if you'd like to book a time!</p>
 
+@* ADMIN CANNOT Create member, it throws an error if its the default admin. *@
+@if (Request.IsAuthenticated && !User.IsInRole("Admin"))
+{
 <div class="text-center" style="padding-bottom: 1rem;">
     @Html.ActionLink("Add Member", "Create")
 </div>
+}
+
+
 
 <section class="page-section bg-light" id="portfolio">
     @if (Model.Count() == 0)

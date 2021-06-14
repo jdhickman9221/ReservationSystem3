@@ -203,6 +203,7 @@
     <Content Include="Content\assets\img\close-icon.svg" />
     <Content Include="Content\assets\img\about\ErrorView.gif" />
     <Content Include="Content\assets\img\header-bg.jpg" />
+    <Content Include="Content\assets\img\logos\1280px-Shure_Logo.svg.png" />
     <Content Include="Content\assets\img\logos\Acoustic.png" />
     <Content Include="Content\assets\img\logos\android-chrome-192x192.png" />
     <Content Include="Content\assets\img\logos\apple-touch-icon.png" />
@@ -218,7 +219,10 @@
     <Content Include="Content\assets\img\logos\favicon-32x32.png" />
     <Content Include="Content\assets\img\logos\favicon.ico" />
     <Content Include="Content\assets\img\logos\google.svg" />
+    <Content Include="Content\assets\img\logos\ibanez.png" />
     <Content Include="Content\assets\img\logos\ibm.svg" />
+    <Content Include="Content\assets\img\logos\krk.svg" />
+    <Content Include="Content\assets\img\logos\Mackie_Combo_logo-black-outline.png" />
     <Content Include="Content\assets\img\logos\microsoft.svg" />
     <Content Include="Content\assets\img\logos\mstile-150x150.png" />
     <Content Include="Content\assets\img\logos\safari-pinned-tab.svg" />

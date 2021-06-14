@@ -111,7 +111,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "LocationID,LocationName,Address,City,State,ZipCode,ReservationLimit,Description,LocationPhoto")] Location location, HttpPostedFileBase LocationPhoto)
+        public ActionResult Edit([Bind(Include = "LocationID,LocationName,Address,City,State,ZipCode,ReservationLimit,Description,LocationLogo")] Location location, HttpPostedFileBase LocationPhoto)
         {
 
 
@@ -179,7 +179,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
 
             if (location.LocationLogo != null && location.LocationLogo != "noImage.png")
             {
-                System.IO.File.Delete(Server.MapPath("~/Content/assets/img/uploads/" + Session["currentImage"].ToString()));
+                System.IO.File.Delete(Server.MapPath("~/Content/assets/img/uploads/" +  location.LocationLogo));
             }
             db.Locations.Remove(location);
             db.SaveChanges();
