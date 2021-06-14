@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Email Confirmation";
+}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="row d-flex justify-content-center" style="padding-top: 2em; padding-bottom: 2em;">
+    <h2 class="col-md-12 text-center">@ViewBag.Title</h2>
+    <div class="">
+        <h4 class="text-center">We received the following message:</h4>
+        <p class="text-center"><em>"@Model.Message"</em></p>
+        <h4 class="text-center">We will respond as soon as possible to:</h4>
+        <h4 class="text-center"><strong>@Model.Email</strong> </h4>
+        <h4 class="text-center">Thank you for contacting us friend!</h4>
+        <div style="padding: 1.5rem;">@Html.ActionLink("Home", "Index", "Home", new { @class = "btn btn-primary  col-md-2 offset-5" })</div>
+    </div>
+</div>

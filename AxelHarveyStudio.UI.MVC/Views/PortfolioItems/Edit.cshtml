@@ -1,64 +1,68 @@
 ﻿@model AxelHarveyStudio.DATA.EF.PortfolioItem
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = Model.JobName;
 }
+<br /><br />
+<br /><br />
+<br /><br />
+<h2 class="text-center" Edit @ViewBag.Title ?></h2>
 
-<h2>Edit</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "PortfolioItems", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>PortfolioItem</h4>
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.JobID)
+        @Html.HiddenFor(model => model.Photo)
 
-        <div class="form-group">
+        <div class="form-group text-center " style="padding-bottom: 3rem;">
             @Html.LabelFor(model => model.JobName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6 offset-3 text-center">
                 @Html.EditorFor(model => model.JobName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.JobName, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
             @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-6 offset-3 text-center">
+                <input type="file" name="Photo" />
+                @*@Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
             @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6 offset-3 text-center">
                 @Html.EditorFor(model => model.JobDescription, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
             @Html.LabelFor(model => model.JobReview, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6 offset-3 text-center">
                 @Html.EditorFor(model => model.JobReview, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.JobReview, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
             @Html.LabelFor(model => model.ProjectLink, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-6 offset-3 text-center">
                 @Html.EditorFor(model => model.ProjectLink, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ProjectLink, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+        <div class="form-group text-center" style="padding-bottom: 3rem;">
+            <div class="-center">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>

@@ -35,7 +35,7 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
                 string userID = User.Identity.GetUserId();
                 var userAssets = db.OwnerAssets.Where(a => a.UserID == userID).Include(o => o.UserDetail);
 
-
+                
                 return View(userAssets.ToList());
               
             }

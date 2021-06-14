@@ -160,7 +160,7 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
     public class PortfolioItemMetadata
     {
 
-        [Required(ErrorMessage = "*Required")]
+        
         [Display(Name = "ID")]
         public int JobID { get; set; }
 
@@ -174,12 +174,16 @@ namespace AxelHarveyStudio.DATA.EF/*.Metadata*/
 
         [StringLength(200, ErrorMessage = "* Must be 200 characters or less.")]
         [Display(Name = "Description")]
+        [UIHint("MultilineText")]
         public string JobDescription { get; set; }
 
         [StringLength(200, ErrorMessage = "* Must be 200 characters or less.")]
         [Display(Name = "Client Review")]
         [UIHint("MultilineText")]
         public string JobReview { get; set; }
+
+        [StringLength(200, ErrorMessage = "* Must be 200 characters or less.")]
+        public string ProjectLink { get; set; }
     }
     #endregion
 

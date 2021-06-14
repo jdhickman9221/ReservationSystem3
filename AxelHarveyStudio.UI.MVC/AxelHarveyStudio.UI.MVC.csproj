@@ -182,6 +182,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -273,6 +274,8 @@
     <Content Include="_Archive\index.html" />
     <Content Include="_Archive\js\scripts.js" />
     <Content Include="Content\assets\img\logos\site.webmanifest" />
+    <Content Include="configs\AppSecretKeys.config" />
+    <Content Include="configs\Connections.config" />
     <None Include="Scripts\OldScripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\OldScripts\jquery-3.3.1.js" />
     <Content Include="Scripts\OldScripts\jquery-3.3.1.min.js" />
@@ -298,7 +301,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_OriginalLayout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -361,6 +363,8 @@
     <Content Include="Views\PortfolioItems\Details.cshtml" />
     <Content Include="Views\PortfolioItems\Edit.cshtml" />
     <Content Include="Views\PortfolioItems\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\EmailConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,5 +36,7 @@ namespace AxelHarveyStudio.DATA.EF
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<PortfolioItem> PortfolioItems { get; set; }
+
+        //public System.Data.Entity.DbSet<AxelHarveyStudio.UI.MVC.Models.ContactViewModel> ContactViewModels { get; set; }
     }
 }
