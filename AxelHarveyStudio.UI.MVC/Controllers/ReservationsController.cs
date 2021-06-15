@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using AxelHarveyStudio.DATA.EF;
@@ -112,8 +114,36 @@ namespace AxelHarveyStudio.UI.MVC.Controllers
                 if (locations.ReservationLimit > reservationCount)//if the count (which is the bookings at the same date and same place)
                     //are less than the daily limit, then it will be created.
                 {
+                    var currentUser = User.Identity.GetUserName();
                     db.Reservations.Add(reservation);
                     db.SaveChanges();
+
+                    string subject = $"{currentUser} added a new reservation";
+                    string message = $"You have a new reservation! On Date:{reservation.ReservationDate.ToShortDateString()}. At Studio: {reservation.Location.LocationName}. Customer: {currentUser}.";
+                    MailMessage mm = new MailMessage(
+                        ConfigurationManager.AppSettings["EmailUser"].ToString(),
+                        ConfigurationManager.AppSettings["EmailTo"].ToString(),
+                        subject,
+                        message
+                        );
+
+                    SmtpClient client = new SmtpClient(ConfigurationManager.AppSettings["EmailClient"].ToString());
+                    client.Port = 8889; //This is for testing locally.
+                    client.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["EmailUser"].ToString(), ConfigurationManager.AppSettings["EmailPass"].ToString());
+
+
+                    client.Send(mm);
+
+                    MailMessage mm2 = new MailMessage(
+                        ConfigurationManager.AppSettings["EmailUser"].ToString(),
+                        currentUser,
+                        subject,
+                        message
+                        );
+                    client.Send(mm2);
+
+                    
+
                 }
                 else
                 {
