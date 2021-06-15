@@ -205,6 +205,8 @@
     <Content Include="Content\assets\img\header-bg.jpg" />
     <Content Include="Content\assets\img\logos\1280px-Shure_Logo.svg.png" />
     <Content Include="Content\assets\img\logos\Acoustic.png" />
+    <Content Include="Content\assets\img\logos\addmember.png" />
+    <Content Include="Content\assets\img\logos\adduser.png" />
     <Content Include="Content\assets\img\logos\android-chrome-192x192.png" />
     <Content Include="Content\assets\img\logos\apple-touch-icon.png" />
     <Content Include="Content\assets\img\logos\AxelHarvey.png" />
@@ -212,8 +214,11 @@
     <Content Include="Content\assets\img\logos\AxelHarveyIcon2.png" />
     <Content Include="Content\assets\img\logos\AxelHarveyLogo2.png" />
     <Content Include="Content\assets\img\logos\browserconfig.xml" />
+    <Content Include="Content\assets\img\logos\calander.png" />
     <Content Include="Content\assets\img\logos\Drum.png" />
+    <Content Include="Content\assets\img\logos\editIcon.png" />
     <Content Include="Content\assets\img\logos\Electric.png" />
+    <Content Include="Content\assets\img\logos\emailsend.png" />
     <Content Include="Content\assets\img\logos\facebook.svg" />
     <Content Include="Content\assets\img\logos\favicon-16x16.png" />
     <Content Include="Content\assets\img\logos\favicon-32x32.png" />
